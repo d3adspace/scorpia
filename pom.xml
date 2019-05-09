@@ -32,7 +32,22 @@
     <version>1.0-SNAPSHOT</version>
     <modules>
         <module>core</module>
+        <module>server</module>
     </modules>
+
+    <repositories>
+        <repository>
+            <id>klauke-enterprises-maven-releases</id>
+            <name>Klauke Enterprises Maven Releases</name>
+            <url>https://repository.klauke-enterprises.com/repository/maven-releases/</url>
+        </repository>
+
+        <repository>
+            <id>klauke-enterprises-maven-snapshots</id>
+            <name>Klauke Enterprises Maven Snapshots</name>
+            <url>https://repository.klauke-enterprises.com/repository/maven-snapshots/</url>
+        </repository>
+    </repositories>
 
     <distributionManagement>
         <repository>
