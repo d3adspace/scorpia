@@ -14,6 +14,9 @@ jdk:
 #####################
 notifications:
   email: false
+  slack:
+    rooms:
+      - secure: SjFPJNuLlhZOPjs3RN+4gCqSQhJZWLYw/q9juvHh0Yf9pMjrOsnV1YCoHHkdivS/Gxyg4FpbKG6lgBAP9WeExIOk6GTEol0QsGxEZwoo0SWvvCxk+UQuB1CiesGF+FVeBBzTSfLCR4dzidgYTGRYVlLGh3OzPwolVPuFLRHctFThuXZT/MKM1OfQovUfiMKYm0Q7GO3R3jXDsA7TJ4+t/SKAlKcHg6BOr7pY/HJJTTKnm55LoLhkGyzHftkrdKlaybk0Oma4do9B47G10US94YCm1iucsVgQPj6xWLHvFqpUCbqukT/8aJ43kG5s/IsyvSQeU6DytdAFHSV8vYXH0sEi3YeW+X1w6x0dB/OgJujQqVLrfUv2VxJsUGiyCgAmPOJy4syDbCGawCVp00JrDvynUEqTVaVHovK6E3r5E2sydk3YVbTd992jm4gvMyk4AtAWBt5Pveprj3rPwH9WWZRkhJEWk6erDzzRsg1ieE3Hh2b3RX6NipspxCbpuCLErA1Z2O/k7g6aERlBqiM1dwmHaVgLzg6qT9/8kuh+k9/m0cyOvjSwVAmAqOZgC1EpOpchQEorxOPwdm3GE+buq0fC+GcHetXV8MGzr2l8akxTl64e0zSq4jHf0mV8nsBEB7EgX3ryeP4fs0oRdMRsrIOzp2PcXrExf6+pO3SS6g0=
 
 ####################
 ### Build script ###
