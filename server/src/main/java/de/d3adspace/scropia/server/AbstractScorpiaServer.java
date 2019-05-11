@@ -22,30 +22,27 @@
  * SOFTWARE.
  */
 
-package de.d3adspace.scropia.server.tcp;
+package de.d3adspace.scropia.server;
 
-import com.google.common.util.concurrent.ListenableFuture;
-import de.d3adspace.scropia.server.AbstractScorpiaServer;
 import de.d3adspace.scropia.server.config.ScorpiaServerConfig;
 
-public class ScorpiaTCPServer extends AbstractScorpiaServer {
+public abstract class AbstractScorpiaServer implements ScorpiaServer {
 
-    public ScorpiaTCPServer(ScorpiaServerConfig serverConfig) {
-        super(serverConfig);
+    /**
+     * The server config with all options.
+     */
+    private final ScorpiaServerConfig serverConfig;
+
+    public AbstractScorpiaServer(ScorpiaServerConfig serverConfig) {
+        this.serverConfig = serverConfig;
     }
 
-    @Override
-    public ListenableFuture<Boolean> start() {
-        return null;
-    }
-
-    @Override
-    public boolean isRunning() {
-        return false;
-    }
-
-    @Override
-    public ListenableFuture<Boolean> stop() {
-        return null;
+    /**
+     * Get the server config.
+     *
+     * @return The server config.
+     */
+    protected ScorpiaServerConfig getServerConfig() {
+        return serverConfig;
     }
 }

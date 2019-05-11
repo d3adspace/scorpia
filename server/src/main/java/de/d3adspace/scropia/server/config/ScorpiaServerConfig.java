@@ -22,30 +22,25 @@
  * SOFTWARE.
  */
 
-package de.d3adspace.scropia.server.tcp;
+package de.d3adspace.scropia.server.config;
 
-import com.google.common.util.concurrent.ListenableFuture;
-import de.d3adspace.scropia.server.AbstractScorpiaServer;
-import de.d3adspace.scropia.server.config.ScorpiaServerConfig;
+import com.google.common.base.Preconditions;
+import de.d3adspace.scropia.server.mode.ServerMode;
 
-public class ScorpiaTCPServer extends AbstractScorpiaServer {
+public class ScorpiaServerConfig {
 
-    public ScorpiaTCPServer(ScorpiaServerConfig serverConfig) {
-        super(serverConfig);
+    /**
+     * The mode the server is running in.
+     */
+    private final ServerMode mode;
+
+    public ScorpiaServerConfig(ServerMode mode) {
+        Preconditions.checkNotNull(mode, "Mode may not be null.");
+
+        this.mode = mode;
     }
 
-    @Override
-    public ListenableFuture<Boolean> start() {
-        return null;
-    }
-
-    @Override
-    public boolean isRunning() {
-        return false;
-    }
-
-    @Override
-    public ListenableFuture<Boolean> stop() {
-        return null;
+    public ServerMode getMode() {
+        return mode;
     }
 }

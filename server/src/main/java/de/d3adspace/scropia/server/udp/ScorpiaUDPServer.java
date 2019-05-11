@@ -24,6 +24,28 @@
 
 package de.d3adspace.scropia.server.udp;
 
-public class ScorpiaUDPServer {
+import com.google.common.util.concurrent.ListenableFuture;
+import de.d3adspace.scropia.server.AbstractScorpiaServer;
+import de.d3adspace.scropia.server.config.ScorpiaServerConfig;
 
+public class ScorpiaUDPServer extends AbstractScorpiaServer {
+
+    public ScorpiaUDPServer(ScorpiaServerConfig serverConfig) {
+        super(serverConfig);
+    }
+
+    @Override
+    public ListenableFuture<Boolean> start() {
+        return null;
+    }
+
+    @Override
+    public boolean isRunning() {
+        return false;
+    }
+
+    @Override
+    public ListenableFuture<Boolean> stop() {
+        return null;
+    }
 }

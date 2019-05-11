@@ -24,6 +24,28 @@
 
 package de.d3adspace.scropia.server;
 
+import com.google.common.util.concurrent.ListenableFuture;
+
 public interface ScorpiaServer {
 
+    /**
+     * Start the scorpia server.
+     *
+     * @return The future of the result.
+     */
+    ListenableFuture<Boolean> start();
+
+    /**
+     * Check if the server is running.
+     *
+     * @return If the server is running.
+     */
+    boolean isRunning();
+
+    /**
+     * Stop the server.
+     *
+     * @return The future of the result.
+     */
+    ListenableFuture<Boolean> stop();
 }
