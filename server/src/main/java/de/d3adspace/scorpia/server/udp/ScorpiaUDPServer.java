@@ -22,15 +22,15 @@
  * SOFTWARE.
  */
 
-package de.d3adspace.scropia.server.tcp;
+package de.d3adspace.scorpia.server.udp;
 
 import com.google.common.util.concurrent.ListenableFuture;
-import de.d3adspace.scropia.server.AbstractScorpiaServer;
-import de.d3adspace.scropia.server.config.ScorpiaServerConfig;
+import de.d3adspace.scorpia.server.config.ScorpiaServerConfig;
+import de.d3adspace.scorpia.server.AbstractScorpiaServer;
 
-public class ScorpiaTCPServer extends AbstractScorpiaServer {
+public class ScorpiaUDPServer extends AbstractScorpiaServer {
 
-    public ScorpiaTCPServer(ScorpiaServerConfig serverConfig) {
+    public ScorpiaUDPServer(ScorpiaServerConfig serverConfig) {
         super(serverConfig);
     }
 

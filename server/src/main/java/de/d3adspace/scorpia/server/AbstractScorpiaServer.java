@@ -22,22 +22,27 @@
  * SOFTWARE.
  */
 
-package de.d3adspace.scropia.server;
+package de.d3adspace.scorpia.server;
 
-import de.d3adspace.caladrius.Caladrius;
-import de.d3adspace.caladrius.CaladriusImpl;
-import de.d3adspace.scropia.server.config.ScorpiaServerConfig;
+import de.d3adspace.scorpia.server.config.ScorpiaServerConfig;
 
-import java.nio.file.Paths;
+public abstract class AbstractScorpiaServer implements ScorpiaServer {
 
-public class ScorpiaServerBootstrap {
+    /**
+     * The server config with all options.
+     */
+    private final ScorpiaServerConfig serverConfig;
 
-    public static void main(String[] args) {
+    public AbstractScorpiaServer(ScorpiaServerConfig serverConfig) {
+        this.serverConfig = serverConfig;
+    }
 
-        Caladrius caladrius = new CaladriusImpl();
-        ScorpiaServerConfig scorpiaServerConfig = caladrius.readConfig(ScorpiaServerConfig.class, Paths.get("scorpia-config.yml"));
-
-        ScorpiaServer scorpiaServer = ScorpiaServerFactory.createServer(scorpiaServerConfig);
-        scorpiaServer.start();
+    /**
+     * Get the server config.
+     *
+     * @return The server config.
+     */
+    protected ScorpiaServerConfig getServerConfig() {
+        return serverConfig;
     }
 }

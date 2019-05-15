@@ -22,28 +22,10 @@
  * SOFTWARE.
  */
 
-package de.d3adspace.scropia.server;
+package de.d3adspace.scorpia.server.mode;
 
-import com.google.common.base.Preconditions;
-import de.d3adspace.scropia.server.config.ScorpiaServerConfig;
-import de.d3adspace.scropia.server.mode.ServerMode;
-import de.d3adspace.scropia.server.tcp.ScorpiaTCPServer;
-import de.d3adspace.scropia.server.udp.ScorpiaUDPServer;
+public enum ServerMode {
 
-public class ScorpiaServerFactory {
-
-    public static ScorpiaServer createServer(ScorpiaServerConfig scorpiaServerConfig) {
-        Preconditions.checkNotNull(scorpiaServerConfig, "Config may not be null.");
-
-        ServerMode serverMode = scorpiaServerConfig.getMode();
-
-        switch (serverMode) {
-            case TCP: {
-                return new ScorpiaTCPServer(scorpiaServerConfig);
-            }
-            default: {
-                return new ScorpiaUDPServer(scorpiaServerConfig);
-            }
-        }
-    }
+    UDP,
+    TCP
 }
