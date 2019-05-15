@@ -33,11 +33,23 @@ public class ScorpiaServerConfig {
      * The mode the server is running in.
      */
     private final ServerMode mode;
+    private final String serverHost;
+    private final int serverPort;
 
-    public ScorpiaServerConfig(ServerMode mode) {
+    public ScorpiaServerConfig(ServerMode mode, String serverHost, int serverPort) {
+        this.serverHost = serverHost;
+        this.serverPort = serverPort;
         Preconditions.checkNotNull(mode, "Mode may not be null.");
 
         this.mode = mode;
+    }
+
+    public int getServerPort() {
+        return serverPort;
+    }
+
+    public String getServerHost() {
+        return serverHost;
     }
 
     public ServerMode getMode() {
