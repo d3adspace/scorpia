@@ -25,16 +25,28 @@
 package de.d3adspace.scropia.server.config;
 
 import com.google.common.base.Preconditions;
+import de.d3adspace.caladrius.annotation.Config;
+import de.d3adspace.caladrius.annotation.Key;
+import de.d3adspace.caladrius.config.ConfigType;
 import de.d3adspace.scropia.server.mode.ServerMode;
 
+@Config(name = "caladrius-config", type = ConfigType.YAML)
 public class ScorpiaServerConfig {
 
     /**
      * The mode the server is running in.
      */
-    private final ServerMode mode;
-    private final String serverHost;
-    private final int serverPort;
+    @Key("mode")
+    private ServerMode mode;
+
+    @Key("server.host")
+    private String serverHost;
+
+    @Key("server.port")
+    private int serverPort;
+
+    public ScorpiaServerConfig() {
+    }
 
     public ScorpiaServerConfig(ServerMode mode, String serverHost, int serverPort) {
         this.serverHost = serverHost;
