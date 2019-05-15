@@ -44,6 +44,8 @@
     </dependencies>
 
     <build>
+        <finalName>scorpia-server</finalName>
+
         <plugins>
             <!-- Shade JAR -->
             <plugin>
