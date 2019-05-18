@@ -32,18 +32,17 @@ import de.d3adspace.scorpia.server.mode.ServerMode;
 
 public class ScorpiaServerFactory {
 
+    private ScorpiaServerFactory() {
+    }
+
     public static ScorpiaServer createServer(ScorpiaServerConfig scorpiaServerConfig) {
         Preconditions.checkNotNull(scorpiaServerConfig, "Config may not be null.");
 
         ServerMode serverMode = scorpiaServerConfig.getMode();
 
-        switch (serverMode) {
-            case TCP: {
-                return new ScorpiaTCPServer(scorpiaServerConfig);
-            }
-            default: {
-                return new ScorpiaUDPServer(scorpiaServerConfig);
-            }
+        if (serverMode == ServerMode.TCP) {
+            return new ScorpiaTCPServer(scorpiaServerConfig);
         }
+        return new ScorpiaUDPServer(scorpiaServerConfig);
     }
 }
