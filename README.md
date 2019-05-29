@@ -1,3 +1,5 @@
+[![Quality Gate Status](https://sonar.klauke-enterprises.com/api/project_badges/measure?project=scorpia&metric=alert_status)](https://sonar.klauke-enterprises.com/dashboard?id=scorpia)
+
 # scorpia
 High performance TCP / UDP reverse proxy with load balancing capabilities. 
 
