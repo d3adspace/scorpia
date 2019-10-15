@@ -26,11 +26,21 @@ notifications:
     rooms:
       - secure: SjFPJNuLlhZOPjs3RN+4gCqSQhJZWLYw/q9juvHh0Yf9pMjrOsnV1YCoHHkdivS/Gxyg4FpbKG6lgBAP9WeExIOk6GTEol0QsGxEZwoo0SWvvCxk+UQuB1CiesGF+FVeBBzTSfLCR4dzidgYTGRYVlLGh3OzPwolVPuFLRHctFThuXZT/MKM1OfQovUfiMKYm0Q7GO3R3jXDsA7TJ4+t/SKAlKcHg6BOr7pY/HJJTTKnm55LoLhkGyzHftkrdKlaybk0Oma4do9B47G10US94YCm1iucsVgQPj6xWLHvFqpUCbqukT/8aJ43kG5s/IsyvSQeU6DytdAFHSV8vYXH0sEi3YeW+X1w6x0dB/OgJujQqVLrfUv2VxJsUGiyCgAmPOJy4syDbCGawCVp00JrDvynUEqTVaVHovK6E3r5E2sydk3YVbTd992jm4gvMyk4AtAWBt5Pveprj3rPwH9WWZRkhJEWk6erDzzRsg1ieE3Hh2b3RX6NipspxCbpuCLErA1Z2O/k7g6aERlBqiM1dwmHaVgLzg6qT9/8kuh+k9/m0cyOvjSwVAmAqOZgC1EpOpchQEorxOPwdm3GE+buq0fC+GcHetXV8MGzr2l8akxTl64e0zSq4jHf0mV8nsBEB7EgX3ryeP4fs0oRdMRsrIOzp2PcXrExf6+pO3SS6g0=
 
+#############
+### Sonar ###
+#############
+addons:
+  sonarcloud:
+    organization: "d3adspace"
+    token:
+      secure: nLNcsaM7k2SJSekt42tzt5npwLyQgBMWKjz6vk7XcEbLCqzDsWCbNMJlRt55rKhRqqyHrXCkL4plZMtKll3dnef9AfIz1GDpL9+7TVUoaYZLD2Px+CXzmIgJZiCgAEhN/TDCo7G59CibfgbZb3zxD3Xh4vehlkANjmoCilZpNEwM4nzqNdTDmCXrNHlamjdViQCpx7JiBAGwHYhvvdYOtwRDZbwA5BkbRc4PTyDD0zBfvKGsy4hPJ+8D4W1dYi8DOkd+96BKTvEgx7db+ojW3VaRd6q8alBgEdoT9A83WmnkU1ZKQ7MNCCvuTwcI6ZB2D0bSYUk+ZLXD5ebEcjodVRDr67vIFzz9KLCddk96tGstHmoEWTltbFinB+3UrnhCqyVs2piZaIjvAbd47l2JDzfTxHdhxfIgbBs9xDR7Mobu5pqO42ZYYse7OZvaKeD17Xi1iJc52Trmhv0iNckEA3nk+LNJuh4DrxUprSJTSTLGOzppE8BpqtIubPxeihQgF9WFI1Qft8bedlLAZbuj95Mn9HB1xd3XCtuVKKat9GPOuIzyd+ySVpi/t0pL8tngWW/j6g+ocC+b5HjqNH+7O8OCLH4itrBvCVCZ54p4H1S9D0RI1AibFlHzSGvX5sYroxeVs3+BaskrB/EevD5wr31juPE5IT4uVmPRNpudgwI=
+
 ####################
 ### Build script ###
 ####################
 script:
-  - mvn clean compile package install verify sonar:sonar -Dsonar.host.url=https://sonar.klauke-enterprises.com -Dsonar.projectKey=scorpia -Dsonar.login=$SONAR_TOKEN
+  - mvn clean compile
+  - mvn clean install sonar:sonar -Dsonar.projectKey=d3adspace_scorpia
 
 ##################
 ### Deployment ###
@@ -48,4 +58,3 @@ env:
   global:
   - secure: QkwmWVfnt8jvx6wUuNlAHVypMm60WTKkn+ab/AG4VJcMVO/hvhc9Vezg4MVSR0En/su5lOwpZJgkqL04wv/GbZFMYC8QA38N/9C8psBwCwzKUCZ1+3IUuNnYFRCwQkjs3HMg5AoLnwbNYrBUO0PBPzW39M9Dwi2PFcQTM8qlNW32UDkQ9reVE5MplCzYomx76Ovn1zEqz+WkFvhnMZz3aWT+AhjnjSeWe9fAW+jF7DJwBSIOi8+MrwdRClcaGiEkIxAkspyxfU4R3+cWkwkoUyA5XAtTCPP74xnHC9v9zmyK8hRI+icjXv2ieFCCcyfFYdv1Q3PJWhix/fk1LQi99ahesUooVGXV96nmLktlyWBLYPP3lnbFrh3BTUO6vujfe2W6fM5QpW6+t6OL4abXPx7RROzqM2sQuEwv+P3SRB3CTXaoaBCx9xD99MvRwaN1wHAMbZWtcE8aNIZgIoLWHyoK5do+rKaQrgkaS6ATmZd6g5TiyD0w/MdTLBeaR3O0/ydB9jnCFQ1M2oyKb29oDO5zBKVcjS/JJiE0DZUABnkF9dgo9oxJAJWcvUtrtcWEMCvzIr1AnO1YPTorG5VQ9aT++4/mpbydjCFZv6TuZaBIHWgHiTaDpOdP5jbwhLS80SlcjO1YjprM9iYVhgTTvRPtv3hOwQmdLBOj/PXViVE=
   - secure: oQIrvxIqzibarIzPG3M/uq/fuA50IirVLfu3H9ARpwZTvZdbWnNma5PvJS4LXuX4Ds55AHXz2xvwKg3ug1F2WEno5RH8gVU1ewCeyBN/paQj+3+tye/bvzykWmCx8yZ7cJ6Ad6S/sJWdzeO6+mSHf8qMm6OOaLCP5cl/sr1kAI947grvO3EdH8cQgxZZ+MRiCdkxiJMLkjtnSCD/H3KvrPRKyrAHUek9bToOWu1pVvdiSqTIgSqeYDPnpMJl8s+90+LoI/F0WJHQ8jV2S8rPG0/6e0oTqxzdFd/UZkpQk7cdbGQOqWUhpXpSJk/aaITQmQdbmAwGLdG4ph7+/8DQ3bNhzkYPzzgcf/tXhKNgd9NDAsaOZGvibVLvcxKT+QeNXEDpBE8zMU4TwQ9Wfw4VztmBWQ66z0mBxYzVbRtBprvBsKt9bIQnjK7r7pwP6q6xbxx2T55uf4yuFvxMhcKUijzk4wfkbJFyCI7vusupN+1midW1rlBE39hMNxZdiMDGO5/xGlfoqsBc+DAj3mi8MHwMX2a81o0hX/UV8KzqBETBjIQMQJWv4cLxt8qKuIBwo5TRg9ycALo6VpopcodQeMVZYmzxizudQim8eDuQNmgttCT4oGtkGtg0hsjON3jw4d6U5SMvNiGsNzpuF8W85kqLcclERDsi999mpsHBcyk=
-  - secure: HFpZZpxL6bIH95uRiqrR2ElWAakj+OQUb7amA0tF3uQTP6JfYuFzNub5z7hvFMjluSicyatixkBn6F0urF5njcIvoKoFcD0/CZ8fys3C5urX7EaK29wfhRrPdnbg50WIQRsLTADRDEL95ayXz/1O7w1o5z9+/bip0oRhFhMU5cpGXTVI2SH60AF+PcCx97WQHKgdZ/5RtnTxyizKoy8BI80U4X3Il+ky7YHsQTOfzUyz/FJGXzR1hdfLjAm1TAa+g2ORMnFp3J0b/QjEDTS5oApBjrMvm0j8VTGhk3449IJ1qEZh+9ZCtpQTnENUTbzM7hCkm8LNuxmvKGRdpmpCBSINwSfQ6VoYjx/a/WKPfUfun0Il+Bnp0jNBnP2NmVJ+GFg1uHols0ZJ/IdZDEzNK4lCikf9ArmU/REER02WP6JmilxlFgXFWqUn+i8aji2+XEApDwwSex3OGtGUgjSBbrdEDERiMEOfY+xfN5KgOlhyGkknM8N+lfw5DCCB2w/85NjTVASHsoSvToPajkX3q8wFEuzcVWhDkdNNW/o2Lu3YPw1gS5Kg70zL6quFHUE4FjRxzw8TzCQ1qEXoOn1UAAOMFX6xyvOQFBRUx1+0l/037Laodt+fSa2zckubTCs6dvWyollGAzhX5fQKrhxaF8D446szK2/dlDE2q6rWvoM=
