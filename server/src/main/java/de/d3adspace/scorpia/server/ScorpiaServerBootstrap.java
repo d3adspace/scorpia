@@ -36,15 +36,25 @@ import de.d3adspace.scorpia.server.tcp.ScorpiaTCPServer;
 import de.d3adspace.scorpia.server.udp.ScorpiaUDPServer;
 import org.checkerframework.checker.nullness.qual.Nullable;
 
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Scanner;
 
 public class ScorpiaServerBootstrap {
 
+    private static final Path CONFIG_PATH = Paths.get("scorpia-config.yml");
+
     public static void main(String[] args) {
 
-        Caladrius caladrius = new CaladriusImpl();
-        ScorpiaServerConfig serverConfig = caladrius.readConfig(ScorpiaServerConfig.class, Paths.get("scorpia-config.yml"));
+        ScorpiaServerConfig serverConfig;
+
+        if (Files.exists(CONFIG_PATH)) {
+            Caladrius caladrius = new CaladriusImpl();
+            serverConfig = caladrius.readConfig(ScorpiaServerConfig.class, CONFIG_PATH);
+        } else {
+            serverConfig = ScorpiaServerConfig.fromEnvironment();
+        }
 
         ServerMode mode = serverConfig.getMode();
         String serverHost = serverConfig.getServerHost();

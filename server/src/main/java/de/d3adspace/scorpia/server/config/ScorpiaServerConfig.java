@@ -33,6 +33,10 @@ import de.d3adspace.scorpia.server.mode.ServerMode;
 @Config(name = "scorpia-config", type = ConfigType.YAML)
 public class ScorpiaServerConfig {
 
+    private static final String ENV_SERVER_MODE = "REVERSE_PROXY_TYPE";
+    private static final String ENV_SERVER_HOST = "REVERSE_PROXY_HOST";
+    private static final String ENV_SERVER_PORT = "REVERSE_PROXY_PORT";
+
     @Key("mode")
     private ServerMode mode;
 
@@ -51,6 +55,21 @@ public class ScorpiaServerConfig {
         Preconditions.checkNotNull(mode, "Mode may not be null.");
 
         this.mode = mode;
+    }
+
+    public static ScorpiaServerConfig fromEnvironment() {
+        ServerMode serverMode = ServerMode.valueOf(System.getenv(ENV_SERVER_MODE));
+        String serverHost = System.getenv(ENV_SERVER_HOST);
+        int serverPort = Integer.parseInt(System.getenv(ENV_SERVER_PORT));
+
+        return ScorpiaServerConfig.of(serverMode, serverHost, serverPort);
+    }
+
+    private static ScorpiaServerConfig of(ServerMode serverMode, String serverHost, int serverPort) {
+        Preconditions.checkNotNull(serverMode);
+        Preconditions.checkNotNull(serverHost);
+
+        return new ScorpiaServerConfig(serverMode, serverHost, serverPort);
     }
 
     public int getServerPort() {
