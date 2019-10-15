@@ -1,4 +1,7 @@
-[![Quality Gate Status](https://sonar.klauke-enterprises.com/api/project_badges/measure?project=scorpia&metric=alert_status)](https://sonar.klauke-enterprises.com/dashboard?id=scorpia)
+[![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=d3adspace_scorpia&metric=ncloc)](https://sonarcloud.io/dashboard?id=d3adspace_scorpia)
+[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=d3adspace_scorpia&metric=sqale_rating)](https://sonarcloud.io/dashboard?id=d3adspace_scorpia)
+[![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=d3adspace_scorpia&metric=reliability_rating)](https://sonarcloud.io/dashboard?id=d3adspace_scorpia)
+[![Bugs](https://sonarcloud.io/api/project_badges/measure?project=d3adspace_scorpia&metric=bugs)](https://sonarcloud.io/dashboard?id=d3adspace_scorpia)
 
 # scorpia
 High performance TCP / UDP reverse proxy with load balancing capabilities. 
