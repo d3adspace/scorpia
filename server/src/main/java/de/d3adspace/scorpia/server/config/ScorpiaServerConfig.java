@@ -33,9 +33,6 @@ import de.d3adspace.scorpia.server.mode.ServerMode;
 @Config(name = "scorpia-config", type = ConfigType.YAML)
 public class ScorpiaServerConfig {
 
-    /**
-     * The mode the server is running in.
-     */
     @Key("mode")
     private ServerMode mode;
 

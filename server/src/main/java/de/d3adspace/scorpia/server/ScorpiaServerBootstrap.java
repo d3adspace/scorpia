@@ -24,20 +24,58 @@
 
 package de.d3adspace.scorpia.server;
 
+import com.google.common.util.concurrent.FutureCallback;
+import com.google.common.util.concurrent.Futures;
+import com.google.common.util.concurrent.ListenableFuture;
+import com.google.common.util.concurrent.MoreExecutors;
 import de.d3adspace.caladrius.Caladrius;
 import de.d3adspace.caladrius.CaladriusImpl;
 import de.d3adspace.scorpia.server.config.ScorpiaServerConfig;
+import de.d3adspace.scorpia.server.mode.ServerMode;
+import de.d3adspace.scorpia.server.tcp.ScorpiaTCPServer;
+import de.d3adspace.scorpia.server.udp.ScorpiaUDPServer;
+import org.checkerframework.checker.nullness.qual.Nullable;
 
 import java.nio.file.Paths;
+import java.util.Scanner;
 
 public class ScorpiaServerBootstrap {
 
     public static void main(String[] args) {
 
         Caladrius caladrius = new CaladriusImpl();
-        ScorpiaServerConfig scorpiaServerConfig = caladrius.readConfig(ScorpiaServerConfig.class, Paths.get("scorpia-config.yml"));
+        ScorpiaServerConfig serverConfig = caladrius.readConfig(ScorpiaServerConfig.class, Paths.get("scorpia-config.yml"));
 
-        ScorpiaServer scorpiaServer = ScorpiaServerFactory.createServer(scorpiaServerConfig);
-        scorpiaServer.start();
+        ServerMode mode = serverConfig.getMode();
+        String serverHost = serverConfig.getServerHost();
+        int serverPort = serverConfig.getServerPort();
+
+        ScorpiaServer scorpiaServer;
+
+        if (mode == ServerMode.TCP) {
+            scorpiaServer = ScorpiaTCPServer.create(serverHost, serverPort);
+        } else if (mode == ServerMode.UDP){
+            scorpiaServer = ScorpiaUDPServer.create(serverHost, serverPort);
+        } else {
+            System.out.println("Unsupported server mode");
+            System.exit(1);
+            return;
+        }
+
+        ListenableFuture<Boolean> start = scorpiaServer.start();
+        Futures.addCallback(start, new FutureCallback<>() {
+            @Override
+            public void onSuccess(@Nullable Boolean aBoolean) {
+                System.out.println("Server started");
+            }
+
+            @Override
+            public void onFailure(Throwable throwable) {
+                throwable.printStackTrace();
+            }
+        }, MoreExecutors.directExecutor());
+
+        Scanner scanner = new Scanner(System.in);
+        String nextLine = scanner.nextLine();
     }
 }

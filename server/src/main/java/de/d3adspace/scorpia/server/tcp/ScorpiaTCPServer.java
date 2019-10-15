@@ -24,14 +24,22 @@
 
 package de.d3adspace.scorpia.server.tcp;
 
+import com.google.common.base.Preconditions;
 import com.google.common.util.concurrent.ListenableFuture;
 import de.d3adspace.scorpia.server.AbstractScorpiaServer;
+import de.d3adspace.scorpia.server.ScorpiaServer;
 import de.d3adspace.scorpia.server.config.ScorpiaServerConfig;
 
-public class ScorpiaTCPServer extends AbstractScorpiaServer {
+public final class ScorpiaTCPServer extends AbstractScorpiaServer {
 
-    public ScorpiaTCPServer(ScorpiaServerConfig serverConfig) {
-        super(serverConfig);
+    private ScorpiaTCPServer(String serverHost, int serverPort) {
+        super(serverHost, serverPort);
+    }
+
+    public static ScorpiaServer create(String serverHost, int serverPort) {
+        Preconditions.checkNotNull(serverHost);
+
+        return new ScorpiaTCPServer(serverHost, serverPort);
     }
 
     @Override
