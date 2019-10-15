@@ -24,25 +24,21 @@
 
 package de.d3adspace.scorpia.server;
 
-import de.d3adspace.scorpia.server.config.ScorpiaServerConfig;
-
 public abstract class AbstractScorpiaServer implements ScorpiaServer {
 
-    /**
-     * The server config with all options.
-     */
-    private final ScorpiaServerConfig serverConfig;
+    private final String serverHost;
+    private final int serverPort;
 
-    public AbstractScorpiaServer(ScorpiaServerConfig serverConfig) {
-        this.serverConfig = serverConfig;
+    protected AbstractScorpiaServer(String serverHost, int serverPort) {
+        this.serverHost = serverHost;
+        this.serverPort = serverPort;
     }
 
-    /**
-     * Get the server config.
-     *
-     * @return The server config.
-     */
-    protected ScorpiaServerConfig getServerConfig() {
-        return serverConfig;
+    public String getServerHost() {
+        return serverHost;
+    }
+
+    public int getServerPort() {
+        return serverPort;
     }
 }
